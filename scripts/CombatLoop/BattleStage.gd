@@ -14,7 +14,7 @@ var encounter : Encounter
 
 func _ready():
 	
-	BattleStageGlobals.movesDisplay = %MovesDisplay
+	
 	
 	encounter = EncounterConstants.getConstant(encounterName) 
 	
@@ -31,7 +31,7 @@ func _ready():
 		%characters.add_child(shell)
 		shell.global_position = %PlayerPositions.get_child(i).global_position
 		
-		BattleStageGlobals.selectedPlayerPiece = shell
+		shell.beSelected()
 		
 	
 	

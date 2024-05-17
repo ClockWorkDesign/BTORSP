@@ -1,5 +1,7 @@
 extends Node
 
+const DO_NOTHING = "DO_NOTHING"
+
 #Fighter Moves
 const PUNCH = "PUNCH"
 const STRENGTHEN = "STRENGTHEN"
@@ -25,7 +27,7 @@ const STAB_WEAKNESS = "STAB_WEAKNESS"
 
 var list : Array[Move] = []
 
-func getPreset(moveName : String) -> Move:
+func getConstant(moveName : String) -> Move:
 	var list = getList()
 	
 	for move in list:
@@ -37,6 +39,21 @@ func getPreset(moveName : String) -> Move:
 func getList() -> Array[Move]:
 	if list.size() > 0:
 		return list
+	
+	list.append(Move.new(
+			DO_NOTHING, #name
+			"Does nothing.", #Summary
+			0, #maxTargets
+			false, #retargetable
+			false, #defaultTargetAllEnemies
+			false, #defaultTargetAllAllies
+			func (this : Move):
+				
+				pass
+				, #apply lambda, what it does when it's applied. 
+			#code that it runs by default when selected.
+		)
+	)
 	
 	list.append(Move.new(
 			PUNCH, #name

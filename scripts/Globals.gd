@@ -16,10 +16,11 @@ func getPlayerPartyShells() -> Array[GamePieceShell]:
 		shells.append(preload("res://scenes/CombatLoop/game_piece_shell.tscn").instantiate())
 		var currentShell : GamePieceShell = shells.back()
 		
-		currentShell.gamePiece = GamePiece.new()
+		var gamePiece = GamePiece.new()
 		
-		CharacterConstants.getPreset(name).applyTo(currentShell.gamePiece)
+		CharacterConstants.getPreset(name).applyTo(gamePiece)
 		
+		currentShell.initialize(gamePiece)
 	
 	return shells
 

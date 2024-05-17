@@ -10,6 +10,8 @@ var moves : Array[Move]
 
 var selectedMove : Move = null
 
+
+
 func _process(delta):
 	
 	$NameAndLevel.text = "LVL " + str(gamePiece.level) + " " + gamePiece.name
@@ -20,30 +22,66 @@ func _process(delta):
 	
 	pass
 
+func initialize(gamePiece : GamePiece):
+	
+	self.gamePiece = gamePiece
+	
+	moves.clear()
+	
+	moves.append(MoveConstants.getConstant(MoveConstants.DO_NOTHING))
+	var newMove = moves.back()
+	newMove.myOwner = gamePiece
+	newMove.shell = self
+	selectedMove = newMove
+	
+	for moveName in gamePiece.moves:
+		
+		moves.append(MoveConstants.getConstant(moveName))
+		newMove = moves.back()
+		newMove.myOwner = gamePiece
+		newMove.shell = self
+		
+	
+	
+	
+	$sprite.texture = load(gamePiece.spritePath)
+	
+	pass
 
-func getMoves():
+func getMoveButtons():
 	
 	var buttons = []
-	
+
 	for move in moves:
 		var newButton = preload(PathConstants.moveButton).instantiate()
-		
 		newButton.assignMove(move, self)
-		
 		buttons.append(newButton)
-		pass
+		
 	
 	return buttons
 	
 
+func beSelected():
+	
+	BattleStageGlobals.selectedPlayerPiece = self
+	BattleStageGlobals.selectedPlayerMove = selectedMove
+	
+	BattleStageGlobals.movesDisplay.takeMoveButtons(getMoveButtons())
+	
+	pass
+
 func _on_target_button_pressed():
 	
-	if Input.is_action_pressed("ctrl") and playerControlled:
-		BattleStageGlobals.selectedPlayerPiece = self
-		BattleStageGlobals.selectedPlayerMove = selectedMove
+	if Input.is_action_just_released("rightClick"):
+		beSelected()
+		return
+	
+	if !BattleStageGlobals.selectedPlayerPiece.playerControlled:
 		return
 	
 	if BattleStageGlobals.selectedPlayerMove != null:
 		BattleStageGlobals.selectedPlayerMove.toggleTarget(gamePiece)
 	
 	pass # Replace with function body.
+
+

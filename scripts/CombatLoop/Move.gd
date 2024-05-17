@@ -3,6 +3,7 @@ extends Object
 class_name Move
 
 var myOwner : GamePiece
+var shell : GamePieceShell
 
 func _init(name: String, summary : String, maxTargets: int, retargetable: bool, defaultTargetAllEnemies: bool, defaultTargetAllAllies: bool, apply: Callable, onSelected: Callable = onSelected) -> void:
 	moveName = name
@@ -47,7 +48,7 @@ var manaCost = 0
 var targets : Array[GamePiece] = []
 
 var canBeSelected : Callable = func(this : Move):
-	if myOwner.status.MANA >= manaCost:
+	if this.myOwner.status.MANA >= manaCost:
 		return true
 	
 	return false
