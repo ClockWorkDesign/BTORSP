@@ -12,6 +12,8 @@ var stage : Stage
 
 var name = ""
 
+var spritePath = ""
+
 #moves is a list of strings
 var moves : Array[String] = []
 

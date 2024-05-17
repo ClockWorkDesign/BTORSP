@@ -50,6 +50,8 @@ var moves : Array[String] = [] #list of strings
 func applyTo(gp : GamePiece):
 	var st = gp.status
 	
+	gp.spritePath = spritePath
+	
 	gp.characterClass = CharacterClassConstants.getClass(characterClass)
 	
 	st.ATK = ATK
