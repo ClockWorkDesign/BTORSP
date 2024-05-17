@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw478kcw8ubkt"]
+[gd_scene load_steps=6 format=3 uid="uid://bw478kcw8ubkt"]
 
 [ext_resource type="Script" path="res://scripts/CombatLoop/GamePieceShell.gd" id="1_vm76q"]
 [ext_resource type="Texture2D" uid="uid://chpiqvpgi8rbh" path="res://textures/icon.svg" id="2_1o66a"]
+
+[sub_resource type="Curve" id="Curve_ct8je"]
+_data = [Vector2(0, 0.564608), 0.0, 0.0, 0, 0, Vector2(0.243017, 1), 0.0, 0.0, 0, 0, Vector2(0.854749, 0.66342), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_nsh6i"]
+offsets = PackedFloat32Array(0, 0.806667, 1)
+colors = PackedColorArray(1, 1, 0.513726, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_cutu6"]
+min_value = -1.0
+_data = [Vector2(0, 1024), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.0612826), 0.0, 0.0, 0, 0, Vector2(0.99999, -0.463658), 0.0, 0.0, 0, 0, Vector2(1, -1024), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="GamePieceShell" type="Node2D"]
 script = ExtResource("1_vm76q")
@@ -10,11 +23,13 @@ script = ExtResource("1_vm76q")
 texture = ExtResource("2_1o66a")
 
 [node name="targetButton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.113725)
 offset_left = -64.0
 offset_top = -62.0
 offset_right = 64.0
 offset_bottom = 66.0
-text = "hey"
+text = "
+"
 
 [node name="NameAndLevel" type="Label" parent="."]
 offset_left = -93.0
@@ -29,5 +44,24 @@ offset_top = 60.0
 offset_right = 93.0
 offset_bottom = 83.0
 horizontal_alignment = 1
+
+[node name="selectedParticles" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+amount = 80
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+orbit_velocity_min = 0.1
+orbit_velocity_max = 1.0
+angle_min = -720.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_ct8je")
+color_ramp = SubResource("Gradient_nsh6i")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_cutu6")
 
 [connection signal="pressed" from="targetButton" to="." method="_on_target_button_pressed"]

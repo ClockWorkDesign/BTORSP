@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c222vadovashe"]
+[gd_scene load_steps=4 format=3 uid="uid://c222vadovashe"]
 
 [ext_resource type="Script" path="res://scripts/CombatLoop/BattleStage.gd" id="1_gaub3"]
+[ext_resource type="Script" path="res://scenes/CombatLoop/MovesDisplay.gd" id="2_5pug1"]
 
 [sub_resource type="Theme" id="Theme_l3j78"]
-default_font_size = 60
+default_font_size = 30
 
 [node name="BattleStage" type="Control"]
 layout_mode = 3
@@ -75,13 +76,21 @@ custom_minimum_size = Vector2(400, 800)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="FlowContainer" type="FlowContainer" parent="VBoxContainer/leftSide"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/leftSide"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="VBoxContainer/leftSide/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/leftSide/VBoxContainer"]
+layout_mode = 2
+text = "End Turn"
 
 [node name="Bottom" type="Panel" parent="VBoxContainer"]
 layout_mode = 2
@@ -99,6 +108,42 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MovesDisplay" type="FlowContainer" parent="VBoxContainer/Bottom/MarginContainer"]
-unique_name_in_owner = true
+[node name="MovesDisplay" type="Control" parent="VBoxContainer/Bottom/MarginContainer"]
 layout_mode = 2
+script = ExtResource("2_5pug1")
+
+[node name="vbox" type="HBoxContainer" parent="VBoxContainer/Bottom/MarginContainer/MovesDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MovesDisplayFlow" type="FlowContainer" parent="VBoxContainer/Bottom/MarginContainer/MovesDisplay/vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/Bottom/MarginContainer/MovesDisplay/vbox"]
+custom_minimum_size = Vector2(600, 2.08165e-12)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Bottom/MarginContainer/MovesDisplay/vbox/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Bottom/MarginContainer/MovesDisplay/vbox/Control/ColorRect"]
+unique_name_in_owner = true
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hey I want to have a turtle that could fly and kill marshmallows"

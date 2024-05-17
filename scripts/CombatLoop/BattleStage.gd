@@ -23,6 +23,7 @@ func _ready():
 		i += 1
 		%characters.add_child(shell)
 		shell.global_position = %EnemyPositions.get_child(i).global_position
+		shell.playerControlled = false
 	
 	i = -1
 	for shell in Globals.getPlayerPartyShells():
