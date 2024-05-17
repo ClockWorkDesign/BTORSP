@@ -17,6 +17,7 @@ var spritePath = ""
 #moves is a list of strings
 var moves : Array[String] = []
 
+var shell
 
 
 var status : Status = Status.new()

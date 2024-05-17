@@ -65,4 +65,7 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_cutu6")
 
+[node name="ArrowsHolder" type="Node2D" parent="."]
+position = Vector2(70, 2)
+
 [connection signal="pressed" from="targetButton" to="." method="_on_target_button_pressed"]

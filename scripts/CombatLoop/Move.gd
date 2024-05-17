@@ -76,8 +76,34 @@ func toggleTarget(gamePiece : GamePiece):
 	if targets.has(gamePiece):
 		targets.remove_at(targets.find(gamePiece))
 	else:
-		targets.append(gamePiece)
+		
+		if maxTargets == 1:
+			targets.clear()
+			targets.append(gamePiece)
+		elif targets.size() < maxTargets:
+			targets.append(gamePiece)
+	
+	shell.updateTargetArrows(targets,self)
 	
 	pass
 
+func clone() -> Move:
+	
+	var newClone = Move.new(
+		moveName,
+		self.summary,
+		self.maxTargets,
+		self.retargetable,
+		self.defaultTargetAllEnemies,
+		self.defaultTargetAllAllies,
+		self.apply,
+		self.onSelected
+	)
+	
+	newClone.canBeSelected = canBeSelected
+	newClone.manaCost = manaCost
+	newClone.canTargetAllies = canBeSelected
+	newClone.canTargetEnemies = canTargetEnemies
+	
+	return newClone
 

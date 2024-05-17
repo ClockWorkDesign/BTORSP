@@ -25,6 +25,7 @@ func _process(delta):
 func initialize(gamePiece : GamePiece):
 	
 	self.gamePiece = gamePiece
+	gamePiece.shell = self
 	
 	moves.clear()
 	
@@ -84,4 +85,23 @@ func _on_target_button_pressed():
 	
 	pass # Replace with function body.
 
-
+"""
+Updates the arrows that point at the enemies
+"""
+func updateTargetArrows(targets : Array[GamePiece],move : Move):
+	
+	for child in $ArrowsHolder.get_children():
+		child.queue_free()
+	
+	for gamePiece in targets:
+		var targetPos = gamePiece.shell.global_position
+		var newArrow = preload(PathConstants.attackArrow).instantiate()
+		$ArrowsHolder.add_child(newArrow)
+		newArrow.setTarget(targetPos,move)
+		
+		
+		
+	
+	
+	
+	pass

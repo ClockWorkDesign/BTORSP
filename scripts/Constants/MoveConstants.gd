@@ -32,7 +32,7 @@ func getConstant(moveName : String) -> Move:
 	
 	for move in list:
 		if move.moveName == moveName:
-			return move
+			return move.clone()
 	
 	return null
 

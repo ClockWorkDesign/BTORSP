@@ -1,15 +1,20 @@
-[gd_scene format=3 uid="uid://vuap6vesb5l5"]
+[gd_scene load_steps=2 format=3 uid="uid://vuap6vesb5l5"]
+
+[ext_resource type="Script" path="res://scripts/CombatLoop/attack_arrow.gd" id="1_q13by"]
 
 [node name="AttackArrow" type="Node2D"]
+script = ExtResource("1_q13by")
 
 [node name="rotatable" type="Node2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="rotatable"]
+[node name="arrowShaft" type="ColorRect" parent="rotatable"]
+unique_name_in_owner = true
 offset_top = -10.0
 offset_right = 80.0
 offset_bottom = 10.0
 
-[node name="Label" type="Label" parent="rotatable/ColorRect"]
+[node name="Label" type="Label" parent="rotatable/arrowShaft"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +26,7 @@ theme_override_constants/outline_size = 5
 text = "Terrible"
 
 [node name="tip" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(104, 0)
 
 [node name="ColorRect" type="ColorRect" parent="tip"]
