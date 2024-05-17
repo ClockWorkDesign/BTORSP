@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c222vadovashe"]
 
 [ext_resource type="Script" path="res://scripts/CombatLoop/BattleStage.gd" id="1_gaub3"]
-[ext_resource type="Script" path="res://scenes/CombatLoop/MovesDisplay.gd" id="2_5pug1"]
+[ext_resource type="Script" path="res://scripts/CombatLoop/MovesDisplay.gd" id="2_5pug1"]
 
 [sub_resource type="Theme" id="Theme_l3j78"]
 default_font_size = 30
