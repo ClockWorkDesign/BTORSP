@@ -40,7 +40,7 @@ func amount(effect : String):
 
 func getEffect(effect : String) -> StatusEffect:
 	for status in statusEffects:
-		if status.statusName == status:
+		if status.statusName == effect:
 			return status
 	
 	return null

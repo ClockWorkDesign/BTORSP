@@ -23,7 +23,7 @@ func _ready():
 		shell.global_position = %EnemyPositions.get_child(i).global_position
 		shell.playerControlled = false
 		shell.isEnemy = true
-		playerPieces.append(shell)
+		enemyPieces.append(shell)
 		shell.gamePiece.stage = self
 	
 	i = -1
@@ -33,7 +33,7 @@ func _ready():
 		shell.global_position = %PlayerPositions.get_child(i).global_position
 		
 		shell.beSelected()
-		enemyPieces.append(shell)
+		playerPieces.append(shell)
 		shell.gamePiece.stage = self
 	
 	startTurn()

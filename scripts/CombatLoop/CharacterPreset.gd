@@ -39,7 +39,8 @@ var AILambdaTargetSelect : Callable = func(this : GamePiece):
 	
 	var shell : GamePieceShell = this.shell
 	var moves = shell.moves #get rid of "do_nothing"
-	var do_nothing = moves.pop_front()
+	var do_nothing = moves[0]
+	moves.remove_at(0)
 	moves.shuffle()
 	this.shell.selectedMove = moves.front() if moves.size() > 0 else do_nothing
 	
@@ -55,8 +56,8 @@ var AILambdaTargetSelect : Callable = func(this : GamePiece):
 		
 		targets.shuffle()
 		while  move.targets.size() < move.maxTargets and targets.size() > 0:
-			move.toggleTarget(targets.pop_front().gamePiece)
-			
+			move.toggleTarget(targets.front().gamePiece)
+			moves.remove_at(0)
 		
 	
 	shell.updateTargetArrows(move.targets,move)
