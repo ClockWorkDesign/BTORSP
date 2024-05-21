@@ -33,6 +33,34 @@ var characterName
 var characterDescription
 var characterClass : String
 
+
+#called when the character is an enemy at the start of each turn 
+var AILambdaTargetSelect : Callable = func(this : GamePiece):
+	
+	var shell : GamePieceShell = this.shell
+	var moves = shell.moves #get rid of "do_nothing"
+	var do_nothing = moves.pop_front()
+	moves.shuffle()
+	this.shell.selectedMove = moves.front() if moves.size() > 0 else do_nothing
+	
+	var move : Move = shell.selectedMove
+	move.onSelected.call(move)
+	
+	if move.targets.size() == 0:
+		var targets : Array = this.getEveryone()
+		if move.cannotTargetAllies():
+			targets = this.getEnemies()
+		if move.cannotTargetEnemies():
+			targets = this.getAllies()
+		
+		targets.shuffle()
+		while  move.targets.size() < move.maxTargets and targets.size() > 0:
+			move.toggleTarget(targets.pop_front().gamePiece)
+			
+		
+	
+	shell.updateTargetArrows(move.targets,move)
+
 var spritePath
 
 var maxHealth
@@ -69,4 +97,5 @@ func applyTo(gp : GamePiece):
 	while gp.level < startingLevel:
 		gp.levelUp()
 	
+	gp.AILambdaTargetSelect = AILambdaTargetSelect
 	

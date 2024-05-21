@@ -88,7 +88,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/leftSide/VBoxContainer"]
+[node name="endTurn" type="Button" parent="VBoxContainer/leftSide/VBoxContainer"]
 layout_mode = 2
 text = "End Turn"
 
@@ -155,3 +155,5 @@ unique_name_in_owner = true
 layout_direction = 2
 layout_mode = 2
 text = "Hey I want to have a turtle that could fly and kill marshmallows"
+
+[connection signal="pressed" from="VBoxContainer/leftSide/VBoxContainer/endTurn" to="." method="_on_end_turn_pressed"]

@@ -45,7 +45,10 @@ func getEffect(effect : String) -> StatusEffect:
 	
 	return null
 
-func _init():
+func initialize():
+	
+	HP = maxHealth
+	MANA = MaxMana
 	
 	var sc = StatusConstants
 	

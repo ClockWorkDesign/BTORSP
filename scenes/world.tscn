@@ -3,11 +3,16 @@
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_8hle1"]
 [ext_resource type="PackedScene" uid="uid://c222vadovashe" path="res://scenes/CombatLoop/battle_stage.tscn" id="2_jr13x"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8hle1")
 character_class = "Thief"
 
 [node name="BattleStage" parent="." instance=ExtResource("2_jr13x")]
 custom_minimum_size = Vector2(1920, 1080)
-offset_right = 1920.0
-offset_bottom = 1080.0
+layout_mode = 1

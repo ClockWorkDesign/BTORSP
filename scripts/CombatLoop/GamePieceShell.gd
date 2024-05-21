@@ -10,14 +10,19 @@ var moves : Array[Move]
 
 var selectedMove : Move = null
 
+var isEnemy = false
 
 
 func _process(delta):
 	
 	$NameAndLevel.text = "LVL " + str(gamePiece.level) + " " + gamePiece.name
-	$hp.text = "HP: " + str(gamePiece.status.HP)
-	
-	
+	$stats.text = ("HP: " + str(gamePiece.status.HP) + "\n" +
+	"MP: " + str(gamePiece.status.MANA) + "\n" +
+	"STR: " + str(gamePiece.status.getStrength()) + "\n" +
+	"DEF: " + str(gamePiece.status.getDefense()) + "\n" +
+	"SPD: " + str(gamePiece.status.getSpeed()) + "\n" +
+	"ACR: " + str(gamePiece.status.getAccuracy()) + "\n"
+	)
 	$selectedParticles.emitting = BattleStageGlobals.selectedPlayerPiece == self
 	
 	pass
@@ -26,6 +31,8 @@ func initialize(gamePiece : GamePiece):
 	
 	self.gamePiece = gamePiece
 	gamePiece.shell = self
+	
+	gamePiece.status.initialize()
 	
 	moves.clear()
 	

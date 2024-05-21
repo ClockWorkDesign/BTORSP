@@ -3,18 +3,16 @@ extends Node
 class_name Stage
 
 #the player's gamepieces
-var playerPieces
+var playerPieces = []
 
 #the enemy's pieces
-var enemyPieces
+var enemyPieces = []
 
 @export var encounterName : String = ""
 
 var encounter : Encounter
 
 func _ready():
-	
-	
 	
 	encounter = EncounterConstants.getConstant(encounterName) 
 	
@@ -24,6 +22,9 @@ func _ready():
 		%characters.add_child(shell)
 		shell.global_position = %EnemyPositions.get_child(i).global_position
 		shell.playerControlled = false
+		shell.isEnemy = true
+		playerPieces.append(shell)
+		shell.gamePiece.stage = self
 	
 	i = -1
 	for shell in Globals.getPlayerPartyShells():
@@ -32,6 +33,42 @@ func _ready():
 		shell.global_position = %PlayerPositions.get_child(i).global_position
 		
 		shell.beSelected()
+		enemyPieces.append(shell)
+		shell.gamePiece.stage = self
+	
+	startTurn()
+	
+
+
+func _on_end_turn_pressed():
+	
+	var shells = %characters.get_children()
+	
+	while shells.size() > 0:
+		shells.shuffle()
+		shells.sort_custom(sort_ascending)
+		
+		shells.front().selectedMove.apply.call(shells.front().selectedMove)
+		
+		shells.pop_front()
 		
 	
+
+func startTurn():
 	
+	for piece in enemyPieces:
+		
+		piece.gamePiece.AILambdaTargetSelect.call(piece.gamePiece)
+		
+		
+	
+	pass
+
+func sort_ascending(a : GamePieceShell, b):
+	if a.gamePiece.status.getSpeed() < a.gamePiece.status.getSpeed():
+		return true
+	return false
+
+
+
+

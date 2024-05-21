@@ -19,6 +19,7 @@ var moves : Array[String] = []
 
 var shell
 
+var AILambdaTargetSelect : Callable
 
 var status : Status = Status.new()
 
