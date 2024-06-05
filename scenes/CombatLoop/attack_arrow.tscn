@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/CombatLoop/attack_arrow.gd" id="1_q13by"]
 
 [node name="AttackArrow" type="Node2D"]
+z_index = 2
 script = ExtResource("1_q13by")
 
 [node name="rotatable" type="Node2D" parent="."]

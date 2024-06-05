@@ -12,6 +12,8 @@ var selectedMove : Move = null
 
 var isEnemy = false
 
+var dead = false
+
 
 func _process(delta):
 	
@@ -24,6 +26,9 @@ func _process(delta):
 	"ACR: " + str(gamePiece.status.getAccuracy()) + "\n"
 	)
 	$selectedParticles.emitting = BattleStageGlobals.selectedPlayerPiece == self
+	
+	if dead:
+		rotation = PI
 	
 	pass
 
@@ -68,6 +73,19 @@ func getMoveButtons():
 	
 	return buttons
 	
+
+func onTurnEnd():
+	
+	for move in moves:
+		move.targets.clear()
+		
+	
+	selectedMove = moves[0]
+	
+	if gamePiece.status.HP < 0:
+		dead = true
+	
+	pass
 
 func beSelected():
 	

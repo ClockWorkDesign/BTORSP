@@ -19,7 +19,7 @@ var SPDUP = 0
 var DEFUP = 0
 var ACRUP = 0
 
-#max level is 100 for now. relates the level to the name (a string) of the skill it unlocks
+#max level is 20 for now. relates the level to the name (a string) of the skill it unlocks
 var SkillUnlocks : Dictionary = {}
 
 func levelPieceUp(gamePiece : GamePiece):

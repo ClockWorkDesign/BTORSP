@@ -4,13 +4,22 @@ var myMove : Move
 
 var shell : GamePieceShell
 
+func _physics_process(delta):
+	
+	var selected = shell.selectedMove == myMove
+	
+	if selected:
+		text = myMove.moveName + " (Selected)"
+	else:
+		text = myMove.moveName
+	
+	pass
+
 func assignMove(move : Move,shell : GamePieceShell):
 	myMove = move
 	self.shell = shell
 	
 	text = move.moveName
-	
-	
 	
 	pass
 
@@ -24,6 +33,8 @@ func _on_pressed():
 	
 	if myMove.canBeSelected.call(myMove):
 		BattleStageGlobals.selectedPlayerMove = myMove
+		
+		myMove.targets.clear()
 		
 		myMove.onSelected.call(myMove)
 		

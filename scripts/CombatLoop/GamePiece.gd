@@ -31,7 +31,7 @@ func getEnemies():
 func getAllies():
 	return stage.enemyPieces if !belongsToPlayer else stage.playerPieces
 func getEveryone():
-	var everyone : Array = getEnemies()
+	var everyone : Array = getEnemies().duplicate()
 	everyone.append_array(getAllies())
 	return everyone
 
@@ -52,7 +52,6 @@ func hasMove(move : String):
 	return false
 
 func onTurnEnd():
-	
 	
 	
 	pass

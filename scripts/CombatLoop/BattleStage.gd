@@ -53,13 +53,30 @@ func _on_end_turn_pressed():
 		shells.pop_front()
 		
 	
+	for piece in getEveryone():
+		piece.onTurnEnd()
+	
+	for piece in enemyPieces: if piece.dead: enemyPieces.erase(piece)
+	for piece in playerPieces: if piece.dead: playerPieces.erase(piece)
+	
+	
+	
+	startTurn()
+	
 
 func startTurn():
+	
+	for piece in playerPieces:
+		
+		piece.gamePiece.AILambdaTargetSelect.call(piece.gamePiece)
+		
+		pass
 	
 	for piece in enemyPieces:
 		
 		piece.gamePiece.AILambdaTargetSelect.call(piece.gamePiece)
 		
+		pass
 		
 	
 	pass
@@ -69,6 +86,9 @@ func sort_ascending(a : GamePieceShell, b):
 		return true
 	return false
 
-
+func getEveryone():
+	var everyone : Array = enemyPieces.duplicate()
+	everyone.append_array(playerPieces)
+	return everyone
 
 

@@ -74,7 +74,7 @@ var apply : Callable = func(this : Move):
 func toggleTarget(gamePiece : GamePiece):
 	
 	if targets.has(gamePiece):
-		targets.remove_at(targets.find(gamePiece))
+		targets.erase(gamePiece)
 	else:
 		
 		if maxTargets == 1:

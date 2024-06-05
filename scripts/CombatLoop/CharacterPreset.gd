@@ -38,7 +38,7 @@ var characterClass : String
 var AILambdaTargetSelect : Callable = func(this : GamePiece):
 	
 	var shell : GamePieceShell = this.shell
-	var moves = shell.moves #get rid of "do_nothing"
+	var moves = shell.moves.duplicate() #get rid of "do_nothing"
 	var do_nothing = moves[0]
 	moves.remove_at(0)
 	moves.shuffle()
@@ -54,10 +54,12 @@ var AILambdaTargetSelect : Callable = func(this : GamePiece):
 		if move.cannotTargetEnemies():
 			targets = this.getAllies()
 		
-		targets.shuffle()
-		while  move.targets.size() < move.maxTargets and targets.size() > 0:
-			move.toggleTarget(targets.front().gamePiece)
-			moves.remove_at(0)
+		var possibleTargets = targets.duplicate()
+		
+		possibleTargets.shuffle()
+		while  move.targets.size() < move.maxTargets and possibleTargets.size() > 0:
+			move.toggleTarget(possibleTargets.front().gamePiece)
+			possibleTargets.remove_at(0)
 		
 	
 	shell.updateTargetArrows(move.targets,move)
@@ -69,6 +71,7 @@ var maxMana
 
 var startingLevel
 
+#starting
 var ATK = 0
 var SPD = 0
 var DEF = 0
@@ -88,7 +91,6 @@ func applyTo(gp : GamePiece):
 	st.DEF = DEF
 	st.ACR = ACR
 	
-	st.maxHealth = maxHealth
 	st.maxHealth = maxHealth
 	
 	gp.moves = moves
