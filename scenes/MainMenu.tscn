@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://8xksc7doaqpy"]
+[gd_scene load_steps=2 format=3 uid="uid://8xksc7doaqpy"]
+
+[ext_resource type="Texture2D" uid="uid://1t65dqu3g6fx" path="res://textures/RPGStuff/main menu.png" id="1_tnt0g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MainMenu Placeholder BG" type="Sprite2D" parent="."]
+scale = Vector2(4, 3.8)
+texture = ExtResource("1_tnt0g")
+centered = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
